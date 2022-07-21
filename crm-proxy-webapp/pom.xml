@@ -14,10 +14,10 @@
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
-	
+
 	<dependencies>
-	
-		
+
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
@@ -30,17 +30,17 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-<dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-crypto</artifactId>
-       
-    </dependency>
-    <dependency>
-           <groupId>io.jsonwebtoken</groupId>
-           <artifactId>jjwt</artifactId>
-           <version>0.9.1</version>
-        </dependency>
-    <dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-crypto</artifactId>
+
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.9.1</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
@@ -60,30 +60,30 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
-	
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
-		
+
+
 		<dependency>
 			<groupId>com.mosofty</groupId>
-		   	<artifactId>crm-proxy-service</artifactId>
+			<artifactId>crm-proxy-service</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.mosofty</groupId>
-		    <artifactId>crm-proxy-repository</artifactId>
-	        <version>0.0.1-SNAPSHOT</version>		
+			<artifactId>crm-proxy-repository</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
 	</dependencies>
-	
-	
-	
-	
+
+
+
+
 	<build>
 		<plugins>
 			<plugin>
@@ -99,7 +99,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
-	 <finalName>Spring-boot-docker</finalName>	
+		<finalName>spring-boot-docker</finalName>
 	</build>
 
 </project>
