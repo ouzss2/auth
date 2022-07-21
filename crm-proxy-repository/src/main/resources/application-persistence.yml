@@ -1,0 +1,47 @@
+server:
+  port: 9012    #default port where the service will be started
+ 
+eureka:         #tells about the Eureka server details and its refresh time
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
+    ip-address: http://104.225.216.185
+    hostname: 104.225.216.185
+    non-secure-port: 9003
+    non-secure-port-enabled: true   
+    secure-port: 9003
+  client:
+    serviceUrl:
+      defaultZone: http://registry:9000/eureka/
+    healthcheck:
+      enabled: true
+    lease:
+      duration: 5
+  
+spring:     
+  application:
+    name: CRM   #current service name to be used by the eureka server
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  datasource:
+    url: jdbc:mysql://mysql:3306/stage?useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: root
+    password: adminadmin
+
+logging:
+  level:
+    com.quefi.authentication: INFO
+    org.springframework.web.client.RestTemplate: DEBUG
+    org.springframework.web: DEBUG
+  file: logs/crm.log  
+tpd:
+  appconfig:    
+    proxy: proxy
+    port : 9001
+    mailManager: mailmanager  
+  
