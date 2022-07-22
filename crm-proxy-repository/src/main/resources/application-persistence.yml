@@ -17,7 +17,7 @@ eureka:         #tells about the Eureka server details and its refresh time
       enabled: true
     lease:
       duration: 5
-  
+
 spring:     
   application:
     name: CRM   #current service name to be used by the eureka server
@@ -28,6 +28,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        dialect: org.hibernate.dialect.MySQL5Dialect
   datasource:
     url: jdbc:mysql://mysql:3306/stage?useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: root
