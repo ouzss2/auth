@@ -47,7 +47,7 @@ pipeline {
                 sh '''
                 docker login -u "ouzss" -p "Samia@58623712"
                     docker pull ouzss/crmproxy:latest  
-                   
+                    docker stop crmproxy  
                    docker rm crmproxy  
                     docker run -v /opt/logs:/logs -p 9012:9012 --name crmproxy --network dbconnexion  --restart=always -t -d ouzss/crmproxy:latest 
 
