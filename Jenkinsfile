@@ -48,7 +48,7 @@ pipeline {
                 docker login -u "ouzss" -p "Samia@58623712"
                     docker pull ouzss/crmproxy:latest  
                     
-                    docker run -v /opt/logs:/logs -p 9012:9012 --name springbootimage --network dbconnexion  --restart=always -t -d ouzss/crmproxy:latest 
+                    docker run -v /opt/logs:/logs -p 9012:9012 --name crmproxy --network dbconnexion  --restart=always -t -d ouzss/crmproxy:latest 
 
                 '''
             }
