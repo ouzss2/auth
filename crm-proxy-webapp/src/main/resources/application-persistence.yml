@@ -11,8 +11,8 @@ spring:
         dialect: org.hibernate.dialect.MySQL5Dialect
   datasource:
     url: jdbc:mysql://mysql:3306/stage?useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
-    username: root
-    password: 
+    username: stagiairem
+    password: adminadmin
 
 logging:
   level:
