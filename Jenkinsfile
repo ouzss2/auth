@@ -33,10 +33,10 @@ pipeline {
             steps {
                 sh '''
                     docker login -u "ouzss" -p "Samia@58623712"
-                    docker build --no-cache -t springbootimage:latest .
-                    docker tag springbootimage:latest ouzss/springbootimage:latest
-                    docker push ouzss/springbootimage:latest
-                    docker rmi springbootimage:latest
+                    docker build --no-cache -t crmproxy:latest .
+                    docker tag crmproxy:latest ouzss/crmproxy:latest
+                    docker push ouzss/crmproxy:latest
+                    docker rmi crmproxy:latest
                 '''
                     }
             }
@@ -46,10 +46,9 @@ pipeline {
             steps {
                 sh '''
                 docker login -u "ouzss" -p "Samia@58623712"
-                    docker pull ouzss/springbootimage:latest  
-                    docker stop springbootimage
-                    docker rm springbootimage
-                    docker run -v /opt/logs:/logs -p 9012:9012 --name springbootimage --network dbconnexion  --restart=always -t -d ouzss/springbootimage:latest 
+                    docker pull ouzss/crmproxy:latest  
+                    
+                    docker run -v /opt/logs:/logs -p 9012:9012 --name springbootimage --network dbconnexion  --restart=always -t -d ouzss/crmproxy:latest 
 
                 '''
             }
