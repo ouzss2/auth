@@ -1,19 +1,10 @@
 spring:     
   application:
     name: CRM   #current service name to be used by the eureka server
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
-        dialect: org.hibernate.dialect.MySQL5Dialect
-  datasource:
-    url: jdbc:mysql://mysql:3306/stage?useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
-    username: stagiairem
-    password: adminadmin
-
+    
+  mongodb:
+   embedded:
+    version: 5.0.5 
 logging:
   level:
     com.quefi.authentication: INFO
