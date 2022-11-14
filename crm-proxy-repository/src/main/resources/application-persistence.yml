@@ -1,10 +1,16 @@
 spring:     
-  application:
-    name: CRM   #current service name to be used by the eureka server
-    
-  mongodb:
-   embedded:
-    version: 5.0.5 
+  datasource:
+    url:  jdbc:mysql://localhost:3307/users 
+    username: root
+    password: adminadmin
+  jpa:
+    hibernate.ddl-auto: update
+    properties:
+     hibernate:
+      dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
+
+ 
 logging:
   level:
     com.quefi.authentication: INFO

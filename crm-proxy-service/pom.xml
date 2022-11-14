@@ -10,7 +10,6 @@
 	</parent>
 
 	<artifactId>crm-proxy-service</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 
 	<properties>
 			<java.version>18</java.version>
@@ -47,7 +46,7 @@
 		<dependency>
 			<groupId>com.mosofty</groupId>
 		    <artifactId>crm-proxy-repository</artifactId>
-	        <version>0.0.1-SNAPSHOT</version>		
+	        <version>${project.parent.version}</version>		
 		</dependency>
 	</dependencies>
 	<build>

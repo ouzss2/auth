@@ -1,31 +1,27 @@
 package com.mosofty.crm.mapper;
 
- 
-import org.bson.types.ObjectId;
-import org.mapstruct.Mapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+
+import org.springframework.context.annotation.Configuration;
 
 import com.mosofty.crm.dto.UserView;
 import com.mosofty.crm.model.User;
-import com.mosofty.crm.repository.UserRepo;
 
-import java.util.List;
+@Configuration
+public class UserViewMapper {
 
-@Mapper(componentModel = "spring", uses = {ObjectIdMapper.class})
-public abstract class UserViewMapper {
+	public UserView toUserView(User user, String token) {
+		return new UserView(user.getId(), user.getUsername(), user.getFullName(), token);
+	}
+	public UserView toUserView(User user ) {
+		return new UserView(user.getId(), user.getUsername(), user.getFullName(),null);
+	}
 
-  @Autowired
-  private UserRepo userRepo;
+	public List<UserView> toUserView(List<User> users,String token) {
+		return users.stream().map(user -> toUserView(user, token)).toList();
+	}
 
-  public abstract UserView toUserView(User user);
-
-  public abstract List<UserView> toUserView(List<User> users);
-
-  public UserView toUserViewById(ObjectId id) {
-    if (id == null) {
-      return null;
-    }
-    return toUserView(userRepo.getById(id));
-  }
-
+	public List<UserView> toUserView(List<User> users ) {
+		return users.stream().map(user -> toUserView(user)).toList();
+	}
 }

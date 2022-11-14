@@ -1,14 +1,15 @@
 package com.mosofty.crm.dto;
 
-import lombok.Builder;
+import java.util.List;
 
 import javax.validation.constraints.NotBlank;
-import java.util.Set;
+
+import lombok.Builder;
 
 public record UpdateUserRequest(
   @NotBlank
   String fullName,
-  Set<String> authorities
+		List<RoleView> authorities
 ) {
 
   @Builder

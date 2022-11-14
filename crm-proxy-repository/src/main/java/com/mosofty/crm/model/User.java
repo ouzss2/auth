@@ -2,24 +2,42 @@ package com.mosofty.crm.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.bson.types.ObjectId;
+
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.Id;
+ 
 import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
+ 
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-@Document(collection = "users")
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+ 
+
+@Entity
+@Table(name = "users")
 @Getter @Setter
-public class User extends ComparableEntity implements UserDetails {
+public class User  implements UserDetails {
+
+  private static final long serialVersionUID = 1L;
 
   @Id
-  private ObjectId id;
+  @GeneratedValue (strategy = GenerationType.IDENTITY)
+  private Long id;
 
   @CreatedDate
   private LocalDateTime createdAt;
@@ -28,12 +46,18 @@ public class User extends ComparableEntity implements UserDetails {
 
   private boolean enabled = true;
 
-  @Indexed(unique = true)
+ 
   private String username;
   private String password;
-  @Indexed
+
   private String fullName;
-  private Set<Role> authorities = new HashSet<>();
+  @ManyToMany(cascade = { CascadeType.MERGE})
+  @JoinTable(
+      name = "user_roles", 
+      joinColumns = { @JoinColumn(name = "user_id") }, 
+      inverseJoinColumns = { @JoinColumn(name = "role_id") }
+  )
+  private List<Role> authorities = new ArrayList<>();
 
   public User() {
   }

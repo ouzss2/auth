@@ -9,6 +9,8 @@ import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
  
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
+import java.util.Arrays;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -34,9 +36,11 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtGra
 import org.springframework.security.oauth2.server.resource.web.BearerTokenAuthenticationEntryPoint;
 import org.springframework.security.oauth2.server.resource.web.access.BearerTokenAccessDeniedHandler;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
+
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true, jsr250Enabled = true, prePostEnabled = true)
@@ -77,7 +81,7 @@ public class SecurityConfig {
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     // Enable CORS and disable CSRF
     http.cors().and().csrf().disable();
-
+    //http.cors().disable();
     // Set session management to stateless
     http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
@@ -93,27 +97,28 @@ public class SecurityConfig {
         // Swagger endpoints must be publicly accessible
         .antMatchers("/")
         .permitAll()
-        .antMatchers(format("%s/**", restApiDocPath))
-        .permitAll()
-        .antMatchers(format("%s/**", swaggerPath))
-        .permitAll()
+        .antMatchers("/actuator/**").permitAll()
+        .antMatchers(format("%s/**", restApiDocPath)).permitAll()
+        .antMatchers(format("%s/**", swaggerPath)).permitAll()
         // Our public endpoints
         .antMatchers("/api/public/**")
         .permitAll()
-        .antMatchers(HttpMethod.GET, "/api/author/**")
-        .permitAll()
-        .antMatchers(HttpMethod.POST, "/api/author/search")
-        .permitAll()
-        .antMatchers(HttpMethod.GET, "/api/book/**")
-        .permitAll()
-        .antMatchers(HttpMethod.POST, "/api/book/search")
-        .permitAll()
+       // .antMatchers(HttpMethod.GET, "/auth/api/author/**")
+       // .permitAll()
+       // .antMatchers(HttpMethod.POST, "/auth/api/author/search")
+       // .permitAll()
+       // .antMatchers(HttpMethod.GET, "/auth/api/book/**")
+       // .permitAll()
+       // .antMatchers(HttpMethod.POST, "/auth/api/book/search")
+       // .permitAll()
+      
         // Our private endpoints
         .anyRequest()
         .authenticated()
         // Set up oauth2 resource server
         .and()
         .httpBasic(Customizer.withDefaults())
+      
         .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);
 
     return http.build();
@@ -151,18 +156,6 @@ public class SecurityConfig {
     return new BCryptPasswordEncoder();
   }
 
-  // Used by spring security if CORS is enabled.
-  @Bean
-  public CorsFilter corsFilter() {
-    var source = new UrlBasedCorsConfigurationSource();
-    var config = new CorsConfiguration();
-    config.setAllowCredentials(true);
-    config.addAllowedOrigin("*");
-    config.addAllowedHeader("*");
-    config.addAllowedMethod("*");
-    source.registerCorsConfiguration("/**", config);
-    return new CorsFilter(source);
-  }
 
   // Expose authentication manager bean
   @Bean
@@ -170,4 +163,6 @@ public class SecurityConfig {
       AuthenticationConfiguration authenticationConfiguration) throws Exception {
     return authenticationConfiguration.getAuthenticationManager();
   }
+  
+   
 }

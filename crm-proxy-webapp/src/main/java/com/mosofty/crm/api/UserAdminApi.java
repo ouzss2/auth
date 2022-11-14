@@ -1,9 +1,8 @@
 package com.mosofty.crm.api;
 
+import javax.annotation.security.RolesAllowed;
+import javax.validation.Valid;
 
-import io.swagger.v3.oas.annotations.tags.Tag;
-import lombok.RequiredArgsConstructor;
-import org.bson.types.ObjectId;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,10 +18,11 @@ import com.mosofty.crm.dto.SearchRequest;
 import com.mosofty.crm.dto.SearchUsersQuery;
 import com.mosofty.crm.dto.UpdateUserRequest;
 import com.mosofty.crm.dto.UserView;
-import com.mosofty.crm.service.UserService;
 import com.mosofty.crm.model.Role;
-import javax.annotation.security.RolesAllowed;
-import javax.validation.Valid;
+import com.mosofty.crm.service.UserService;
+
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
 
 @Tag(name = "UserAdmin")
 @RestController
@@ -31,31 +31,31 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class UserAdminApi {
 
-  private final UserService userService;
+	private final UserService userService;
 
-  @PostMapping
-  public UserView create(@RequestBody @Valid CreateUserRequest request) {
-    return userService.create(request);
-  }
+	@PostMapping
+	public UserView create(@RequestBody @Valid CreateUserRequest request) {
+		return userService.create(request);
+	}
 
-  @PutMapping("{id}")
-  public UserView update(@PathVariable String id, @RequestBody @Valid UpdateUserRequest request) {
-    return userService.update(new ObjectId(id), request);
-  }
+	@PutMapping("{id}")
+	public UserView update(@PathVariable Long id, @RequestBody @Valid UpdateUserRequest request) {
+		return userService.update(id, request);
+	}
 
-  @DeleteMapping("{id}")
-  public UserView delete(@PathVariable String id) {
-    return userService.delete(new ObjectId(id));
-  }
+	@DeleteMapping("{id}")
+	public UserView delete(@PathVariable Long id) {
+		return userService.delete(id);
+	}
 
-  @GetMapping("{id}")
-  public UserView get(@PathVariable String id) {
-    return userService.getUser(new ObjectId(id));
-  }
+	@GetMapping("{id}")
+	public UserView get(@PathVariable Long id) {
+		return userService.getUser(id);
+	}
 
-  @PostMapping("search")
-  public ListResponse<UserView> search(@RequestBody SearchRequest<SearchUsersQuery> request) {
-    return new ListResponse<UserView>(userService.searchUsers(request.page(), request.query()));
-  }
+	@PostMapping("search")
+	public ListResponse<UserView> search(@RequestBody SearchRequest<SearchUsersQuery> request) {
+		return new ListResponse<UserView>(userService.searchUsers(request.page(), request.query()));
+	}
 
 }

@@ -1,20 +1,21 @@
 package com.mosofty.crm.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import java.util.HashSet;
-import java.util.Set;
 
 public record CreateUserRequest(
   @NotBlank @Email String username,
   @NotBlank String fullName,
   @NotBlank String password,
   @NotBlank String rePassword,
-  Set<String> authorities) {
+		List<RoleView> authorities) {
 
   public CreateUserRequest {
     if (authorities == null) {
-      authorities = new HashSet<>();
+      authorities = new ArrayList<>();
     }
   }
 
@@ -24,7 +25,7 @@ public record CreateUserRequest(
     String password,
     String rePassword
   ) {
-    this(username, fullName, password, rePassword, new HashSet<>());
+    this(username, fullName, password, rePassword, new ArrayList<>());
   }
 
   public CreateUserRequest(
@@ -32,6 +33,6 @@ public record CreateUserRequest(
     String fullName,
     String password
   ) {
-    this(username, fullName, password, password, new HashSet<>());
+    this(username, fullName, password, password, new ArrayList<>());
   }
 }

@@ -18,6 +18,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.jwt.JwtClaimsSet;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +43,7 @@ public class AuthApi {
   private final UserService userService;
 
   @PostMapping("login")
+  @CrossOrigin
   public ResponseEntity<UserView> login(@RequestBody @Valid AuthRequest request) {
     try {
       var authentication =
@@ -71,13 +73,14 @@ public class AuthApi {
 
       return ResponseEntity.ok()
           .header(HttpHeaders.AUTHORIZATION, token)
-          .body(userViewMapper.toUserView(user));
+          .body(userViewMapper.toUserView(user,token));
     } catch (BadCredentialsException ex) {
       return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
   }
 
   @PostMapping("register")
+  @CrossOrigin
   public UserView register(@RequestBody @Valid CreateUserRequest request) {
     return userService.create(request);
   }

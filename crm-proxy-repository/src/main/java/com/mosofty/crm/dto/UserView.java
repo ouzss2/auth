@@ -1,10 +1,11 @@
 package com.mosofty.crm.dto;
 
 public record UserView(
-  String id,
+  Long id,
 
   String username,
-  String fullName
+  String fullName,
+  String accessToken
 ) {
 
 }

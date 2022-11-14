@@ -5,9 +5,7 @@ com/mosofty/crm/api/UserAdminApi.class
 com/mosofty/CrmApplication.class
 com/mosofty/crm/config/GlobalExceptionHandler$ApiCallError.class
 com/mosofty/crm/config/GlobalExceptionHandler.class
-com/mosofty/crm/api/AuthorApi.class
 com/mosofty/crm/config/SwaggerConfig.class
-com/mosofty/crm/config/MongoConfig.class
 com/mosofty/crm/configuration/json/ObjectMapperConfig.class
 com/mosofty/crm/config/MvcConfig.class
 com/mosofty/crm/configuration/json/serializer/LocalDateTimeDeserializer.class
@@ -15,4 +13,4 @@ com/mosofty/crm/config/LoggingConfig.class
 com/mosofty/crm/configuration/json/serializer/LocalDateDeserializer.class
 com/mosofty/crm/api/AuthApi.class
 com/mosofty/crm/config/SimpleCORSFilter.class
-com/mosofty/crm/api/BookApi.class
+com/mosofty/crm/config/CorsFilters.class

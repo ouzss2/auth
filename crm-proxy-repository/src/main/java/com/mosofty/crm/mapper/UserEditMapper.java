@@ -1,40 +1,39 @@
 package com.mosofty.crm.mapper;
 
- 
-import org.mapstruct.BeanMapping;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.MappingTarget;
-import org.mapstruct.Named;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.context.annotation.Configuration;
 
 import com.mosofty.crm.dto.CreateUserRequest;
+import com.mosofty.crm.dto.RoleView;
 import com.mosofty.crm.dto.UpdateUserRequest;
 import com.mosofty.crm.model.Role;
 import com.mosofty.crm.model.User;
 
-import java.util.HashSet;
-import java.util.Set;
+@Configuration
+public class UserEditMapper {
 
-import static java.util.stream.Collectors.toSet;
-import static org.mapstruct.NullValueCheckStrategy.ALWAYS;
-import static org.mapstruct.NullValuePropertyMappingStrategy.IGNORE;
+	public User create(CreateUserRequest request) {
 
-@Mapper(componentModel = "spring", uses = ObjectIdMapper.class)
-public abstract class UserEditMapper {
+		User user = new User();
+		user.setUsername(request.username());
+		user.setPassword(request.password());
+		user.setFullName(request.fullName());
+		user.setAuthorities(stringToRole(request.authorities()));
+		return user;
 
-  @Mapping(source = "authorities", target = "authorities", qualifiedByName = "stringToRole")
-  public abstract User create(CreateUserRequest request);
+	}
 
-  @BeanMapping(nullValueCheckStrategy = ALWAYS, nullValuePropertyMappingStrategy = IGNORE)
-  @Mapping(source = "authorities", target = "authorities", qualifiedByName = "stringToRole")
-  public abstract void update(UpdateUserRequest request, @MappingTarget User user);
+	public void update(UpdateUserRequest request, User user) {
+		user.setAuthorities(stringToRole(request.authorities()));
+	}
 
-  @Named("stringToRole")
-  protected Set<Role> stringToRole(Set<String> authorities) {
-    if (authorities != null) {
-      return authorities.stream().map(Role::new).collect(toSet());
-    }
-    return new HashSet<>();
-  }
+	protected List<Role> stringToRole(List<RoleView> authorities) {
+		if (authorities != null) {
+			return authorities.stream().map(Role::new).toList();
+		}
+		return new ArrayList<>();
+	}
 
 }

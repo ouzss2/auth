@@ -1,6 +1,6 @@
 package com.mosofty.crm.exception;
 
-import org.bson.types.ObjectId;
+
 
 public class NotFoundException extends RuntimeException {
 
@@ -16,8 +16,6 @@ public class NotFoundException extends RuntimeException {
     super(String.format("Entity %s with id %s not found", clazz.getSimpleName(), id));
   }
 
-  public NotFoundException(Class<?> clazz, ObjectId id) {
-    super(String.format("Entity %s with id %s not found", clazz.getSimpleName(), id.toString()));
-  }
+  
 
 }

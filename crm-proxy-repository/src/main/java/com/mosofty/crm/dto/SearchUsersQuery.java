@@ -3,7 +3,7 @@ package com.mosofty.crm.dto;
 import lombok.Builder;
 
 public record SearchUsersQuery(
-  String id,
+  Long id,
   String username,
   String fullName
 ) {
