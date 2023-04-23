@@ -26,7 +26,7 @@ import com.mosofty.crm.repository.UserRepo;
 import lombok.RequiredArgsConstructor;
 
 @Service
-@Transactional(readOnly = true)
+
 @RequiredArgsConstructor
 public class UserService implements UserDetailsService {
 

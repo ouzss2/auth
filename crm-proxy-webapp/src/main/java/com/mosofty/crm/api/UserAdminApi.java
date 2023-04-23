@@ -58,4 +58,5 @@ public class UserAdminApi {
 		return new ListResponse<UserView>(userService.searchUsers(request.page(), request.query()));
 	}
 
+	
 }

@@ -4,10 +4,12 @@ spring:
     username: root
     password: adminadmin
   jpa:
+    show-sql: true
     hibernate.ddl-auto: update
     properties:
      hibernate:
       dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+      format_sql: true
 
 
  

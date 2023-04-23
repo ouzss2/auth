@@ -11,10 +11,10 @@ import com.mosofty.crm.model.User;
 public class UserViewMapper {
 
 	public UserView toUserView(User user, String token) {
-		return new UserView(user.getId(), user.getUsername(), user.getFullName(), token);
+		return new UserView(user.getId(), user.getUsername(), user.getFullName(),user.getSurname(), token);
 	}
 	public UserView toUserView(User user ) {
-		return new UserView(user.getId(), user.getUsername(), user.getFullName(),null);
+		return new UserView(user.getId(), user.getUsername(), user.getFullName(),user.getSurname(),null);
 	}
 
 	public List<UserView> toUserView(List<User> users,String token) {

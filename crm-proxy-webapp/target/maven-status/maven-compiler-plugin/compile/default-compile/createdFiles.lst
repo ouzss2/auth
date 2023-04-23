@@ -12,5 +12,4 @@ com/mosofty/crm/configuration/json/serializer/LocalDateTimeDeserializer.class
 com/mosofty/crm/config/LoggingConfig.class
 com/mosofty/crm/configuration/json/serializer/LocalDateDeserializer.class
 com/mosofty/crm/api/AuthApi.class
-com/mosofty/crm/config/SimpleCORSFilter.class
 com/mosofty/crm/config/CorsFilters.class
