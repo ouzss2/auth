@@ -1,9 +1,11 @@
 /Users/mohamedkefi/Desktop/mosofty/project/crm-2/proxy/crm-proxy-webapp/src/main/java/com/mosofty/crm/api/UserAdminApi.java
 /Users/mohamedkefi/Desktop/mosofty/project/crm-2/proxy/crm-proxy-webapp/src/main/java/com/mosofty/crm/config/CorsFilters.java
 /Users/mohamedkefi/Desktop/mosofty/project/crm-2/proxy/crm-proxy-webapp/src/main/java/com/mosofty/crm/config/SwaggerConfig.java
+/Users/mohamedkefi/Desktop/mosofty/project/crm-2/proxy/crm-proxy-webapp/src/main/java/com/mosofty/crm/tools/AuthentificationManager.java
 /Users/mohamedkefi/Desktop/mosofty/project/crm-2/proxy/crm-proxy-webapp/src/main/java/com/mosofty/crm/config/LoggingConfig.java
 /Users/mohamedkefi/Desktop/mosofty/project/crm-2/proxy/crm-proxy-webapp/src/main/java/com/mosofty/crm/config/MvcConfig.java
 /Users/mohamedkefi/Desktop/mosofty/project/crm-2/proxy/crm-proxy-webapp/src/main/java/com/mosofty/CrmApplication.java
+/Users/mohamedkefi/Desktop/mosofty/project/crm-2/proxy/crm-proxy-webapp/src/main/java/com/mosofty/crm/api/ParameterUserApi.java
 /Users/mohamedkefi/Desktop/mosofty/project/crm-2/proxy/crm-proxy-webapp/src/main/java/com/mosofty/crm/configuration/json/serializer/LocalDateTimeDeserializer.java
 /Users/mohamedkefi/Desktop/mosofty/project/crm-2/proxy/crm-proxy-webapp/src/main/java/com/mosofty/crm/configuration/json/serializer/LocalDateDeserializer.java
 /Users/mohamedkefi/Desktop/mosofty/project/crm-2/proxy/crm-proxy-webapp/src/main/java/com/mosofty/crm/api/AuthApi.java
