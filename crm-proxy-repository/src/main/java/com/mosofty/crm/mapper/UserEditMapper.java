@@ -20,6 +20,7 @@ public class UserEditMapper {
 		user.setUsername(request.username());
 		user.setPassword(request.password());
 		user.setFullName(request.fullName());
+		user.setUfunction(request.ufunction());
 		user.setAuthorities(stringToRole(request.authorities()));
 		return user;
 

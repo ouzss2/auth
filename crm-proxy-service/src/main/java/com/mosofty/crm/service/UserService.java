@@ -103,4 +103,8 @@ public class UserService implements UserDetailsService {
 
 		return userViewMapper.toUserView(users,null);
 	}
+	
+	public List<User> getAll(){
+		return (List<User>) userRepo.findAll();
+	}
 }

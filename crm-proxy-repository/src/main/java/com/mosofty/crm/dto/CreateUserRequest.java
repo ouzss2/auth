@@ -11,6 +11,7 @@ public record CreateUserRequest(
   @NotBlank String fullName,
   @NotBlank String password,
   @NotBlank String rePassword,
+  @NotBlank String ufunction,
 		List<RoleView> authorities) {
 
   public CreateUserRequest {
@@ -23,16 +24,18 @@ public record CreateUserRequest(
     String username,
     String fullName,
     String password,
-    String rePassword
+    String rePassword,
+    String ufunction
   ) {
-    this(username, fullName, password, rePassword, new ArrayList<>());
+    this(username, fullName, password, rePassword,ufunction, new ArrayList<>());
   }
 
   public CreateUserRequest(
     String username,
     String fullName,
-    String password
+    String password,
+    String ufunction
   ) {
-    this(username, fullName, password, password, new ArrayList<>());
+    this(username, fullName, password, password,ufunction, new ArrayList<>());
   }
 }

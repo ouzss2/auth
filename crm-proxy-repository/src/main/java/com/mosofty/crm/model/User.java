@@ -54,6 +54,7 @@ public class User implements UserDetails {
 	private String fullName;
 
 	private String surname;
+	private String ufunction;
 	@ManyToMany(cascade = { CascadeType.MERGE })
 	@JoinTable(name = "user_roles", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "role_id") })

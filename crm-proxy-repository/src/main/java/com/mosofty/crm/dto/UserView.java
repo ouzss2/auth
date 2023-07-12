@@ -6,6 +6,7 @@ public record UserView(
   String username,
   String fullName,
   String surname,
+  String ufunction,
   String accessToken
 ) {
 
